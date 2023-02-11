@@ -1,0 +1,253 @@
+{
+  "extern crate declaration": {
+    "prefix": "ec",
+    "body": ["extern crate something;"]
+  },
+  "extern crate as declaration": {
+    "prefix": "eca",
+    "body": ["extern crate something as something_more;"]
+  },
+  "use declaration": {
+    "prefix": "us",
+    "body": ["use something;"]
+  },
+  "use as declaration": {
+    "prefix": "usa",
+    "body": ["use something as something_more;"]
+  },
+  "use bracketed declaration": {
+    "prefix": "usb",
+    "body": ["use something::{something_more};"]
+  },
+  "use all in": {
+    "prefix": "us*",
+    "body": ["use something::*;"]
+  },
+  "module declaration": {
+    "prefix": "mo",
+    "body": ["mod something;"]
+  },
+  "module bracketed declaration": {
+    "prefix": "mob",
+    "body": ["mod something {\n    $0\n}"]
+  },
+  "let statement": {
+    "prefix": "le",
+    "body": ["let something = something_more;"]
+  },
+  "let mut statement": {
+    "prefix": "lem",
+    "body": ["let mut something = something_more;"]
+  },
+  "let ref statement": {
+    "prefix": "ler",
+    "body": ["let ref something = something_more;"]
+  },
+  "let ref mut statement": {
+    "prefix": "lerm",
+    "body": ["let ref mut something = something_more;"]
+  },
+  "if expression": {
+    "prefix": "if",
+    "body": ["if something {", "    something_more", "}"]
+  },
+  "if else expression": {
+    "prefix": "ife",
+    "body": ["if something {", "    something_more", "} else {", "    something_else", "}"]
+  },
+  "if let expression": {
+    "prefix": "ifl",
+    "body": ["if let something = something_more {", "    something_else", "}"]
+  },
+  "else clause": {
+    "prefix": "el",
+    "body": ["else {", "    something", "}"]
+  },
+  "match expression": {
+    "prefix": "ma",
+    "body": ["match something {", "    something_more => something_else,", "    _ => something", "}"]
+  },
+  "for loop": {
+    "prefix": "fo",
+    "body": ["for something in something_more {", "    something_else", "}"]
+  },
+  "type definition": {
+    "prefix": "ty",
+    "body": ["type something = something_more;"]
+  },
+  "generic type definition": {
+    "prefix": "tyg",
+    "body": ["type something<T> = something_else<something_more>;"]
+  },
+  "struct definition": {
+    "prefix": "st",
+    "body": ["somethingstruct something_more {", "    something_else", "}"]
+  },
+  "generic struct definition": {
+    "prefix": "stg",
+    "body": ["struct something_more<T> {", "    ", "}"]
+  },
+  "struct definition with impl": {
+    "prefix": "sti",
+    "body": ["struct something_more {", "    something_else", "}\n", "impl something_more {", "    ", "}"]
+  },
+  "generic struct definition with impl": {
+    "prefix": "stig",
+    "body": [
+      "struct something_more<T> {",
+      "    ",
+      "}\n",
+      "impl<something_else> something_more<something_else> {",
+      "    ",
+      "}"
+    ]
+  },
+  "enum definition": {
+    "prefix": "en",
+    "body": ["enum something_more {", "    something_else", "}"]
+  },
+  "generic enum definition": {
+    "prefix": "eng",
+    "body": ["enum something_more<T> {", "    ", "}"]
+  },
+  "enum definition with impl": {
+    "prefix": "eni",
+    "body": ["enum something_more {", "    something_else", "}\n", "impl something_more {", "    ", "}"]
+  },
+  "generic enum definition with impl": {
+    "prefix": "enig",
+    "body": [
+      "enum something_more<T> {",
+      "    ",
+      "}\n",
+      "impl<something_else> something_more<something_else> {",
+      "    ",
+      "}"
+    ]
+  },
+  "trait definition": {
+    "prefix": "tr",
+    "body": ["Trait something_more {", "    something_else", "}"]
+  },
+  "generic trait definition": {
+    "prefix": "trg",
+    "body": ["trait something_more<T> {", "    ", "}"]
+  },
+  "impl type": {
+    "prefix": "im",
+    "body": ["impl something {", "    something_more", "}"]
+  },
+  "impl trait for type": {
+    "prefix": "imf",
+    "body": ["impl something for something_more {", "    something_else", "}"]
+  },
+  "impl generic": {
+    "prefix": "img",
+    "body": ["impl<T> something_more {", "    something_else", "}"]
+  },
+  "function definition": {
+    "prefix": "fn",
+    "body": ["fn something(something_else) {", "    ", "}"]
+  },
+  "multiline lambda": {
+    "prefix": "|",
+    "body": ["move |something_more| {", "    something_else", "}"]
+  },
+  "new constructor definition": {
+    "prefix": "new",
+    "body": ["fn new(something_more) -> something_elseSelf {", "    ", "}"]
+  },
+  "main function definition": {
+    "prefix": "main",
+    "body": ["fn main() {", "    something", "}"]
+  },
+  "Option<T>": {
+    "prefix": "opt",
+    "body": ["Option<something>"]
+  },
+  "Result<T>": {
+    "prefix": "res",
+    "body": ["Result<something_more>"]
+  },
+  "impl From<...> for ...": {
+    "prefix": "from",
+    "body": [
+      "impl From<something> for something_more {",
+      "    fn from(val: something) -> Self {",
+      "        ",
+      "    }\n}"
+    ]
+  },
+  "println debug": {
+    "prefix": "pdb",
+    "body": ["println!(\"something = {:?}\", something);"]
+  },
+  "println": {
+    "prefix": "pln",
+    "body": ["println!(something);"]
+  },
+  "assert statement": {
+    "prefix": "ass",
+    "body": ["assert!(something);"]
+  },
+  "assert_eq statement": {
+    "prefix": "asse",
+    "body": ["assert_eq!(something, something_more);"]
+  },
+  "vec macro call": {
+    "prefix": "vec",
+    "body": ["vec![something]"]
+  },
+  "unimplemented macro call with TODO comment": {
+    "prefix": "un",
+    "body": ["unimplemented!() // TODO"]
+  },
+  "unreachable macro call": {
+    "prefix": "unr",
+    "body": ["unreachable!(something)"]
+  },
+  "macro rules": {
+    "prefix": "mr",
+    "body": ["macro_rules! something {", "    (something_more) => {", "        something_else", "    };\n}"]
+  },
+  "test function": {
+    "prefix": "test",
+    "body": ["#[test]", "fn test_something() {", "    something_more", "}"]
+  },
+  "test module": {
+    "prefix": "testm",
+    "body": [
+      "#[cfg(test)]",
+      "mod test_something {",
+      "    use something::*;\n",
+      "    #[test]",
+      "    fn test_something_else() {",
+      "        todo!()",
+      "    }\n}"
+    ]
+  },
+  "attribute": {
+    "prefix": "#",
+    "body": ["#[name(something_more)]"]
+  },
+  "cfg attribute": {
+    "prefix": "cfg",
+    "body": ["#[cfg(something)]"]
+  },
+  "cfg feature attribute": {
+    "prefix": "cff",
+    "body": ["#[cfg(feature = \"something\")]"]
+  },
+  "derive attribute": {
+    "prefix": "drv",
+    "body": ["#[derive(something)]"]
+  },
+  "derive a few useful attributes": {
+    "prefix": "drv*",
+    "body": ["#[derive(Copy, Clone, Debug, Default, PartialEq, Eqsomething)]"]
+  },
+  "TODO comment": {
+    "prefix": "todo",
+    "body": ["// TODO: ..."]
+  }
+}

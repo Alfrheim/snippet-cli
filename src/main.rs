@@ -1,4 +1,4 @@
-use clap::Parser;
+use clap::{Parser, Subcommand};
 use serde_json::Value;
 use std::collections::HashMap;
 
@@ -30,24 +30,57 @@ impl Snippets {
             .body
             .to_string()
     }
+
+    fn get_list(&self) -> Vec<&Snippet> {
+        self.snippets.values().collect::<Vec<&Snippet>>()
+    }
+}
+
+#[derive(Subcommand)]
+enum Commands {
+    // #[arg(short, long)]
+    /// list all the prefix
+    List,
 }
 
 #[derive(Parser)]
 struct Cli {
-    prefix: String,
+    /// short prefix to get the snippe
+    prefix: Option<String>,
+
+    #[command(subcommand)]
+    command: Option<Commands>,
 }
 
 fn main() {
     let args = Cli::parse();
+
     let home = dirs::home_dir()
         .unwrap()
         .join(".config/snippets/snippets.json");
-
     let snippets_file = std::fs::read_to_string(home)
         .expect("could not find `$HOME/.config/snippets/snippets.json`");
+
     let snippets = parse(&snippets_file);
 
-    println!("{}", snippets.get_body(&args.prefix));
+    match &args.command {
+        Some(Commands::List) => {
+            let list = &snippets.get_list();
+            for snippet in list {
+                println!(
+                    "name: {}\nprefix: {}",
+                    snippet.name.to_string(),
+                    snippet.prefix.to_string()
+                );
+            }
+        }
+        None => {
+            println!("not printing list")
+        }
+    }
+    if args.prefix.is_some() {
+        println!("{}", snippets.get_body(&args.prefix.unwrap()));
+    }
 }
 
 pub fn parse(json: &str) -> Snippets {
@@ -197,5 +230,26 @@ mod tests {
 
         let result = parse(&json);
         assert_eq!(result.get_body("not_found"), "".to_string());
+    }
+
+    #[test]
+    fn should_list_name_and_prefix_with_list_option() {
+        let json = r#"{
+        "function": {
+          "prefix": "fn",
+          "body": ["fn", "some()", "{ }"], 
+          "description": "creates a function" 
+        },
+        "test": { 
+          "prefix": "test", 
+          "body": "\\#[test]\nfn should_do_something() {}"
+        }
+        }"#;
+
+        let result = parse(&json);
+        assert_eq!(
+            result.get_list(),
+            "function -> \"fn\"\ntest -> \"test\"".to_string()
+        );
     }
 }
